@@ -36,8 +36,8 @@ namespace Assets.Scripts.UI.Guild
             if(this.@class != null) this.@class.text = this.Info.Info.Class.ToString();
             if(this.level != null) this.level.text = this.Info.Info.Level.ToString();
             if(this.title != null) this.title.text = this.Info.Title.ToString();
-            if (this.joinTime != null) this.joinTime.text = TimeUtil.timestamp.ToString();
-            if (this.status != null) this.status.text = this.Info.joinTime==1?"在线":"离线";
+            if (this.joinTime != null) this.joinTime.text = TimeUtil.GetTime(this.Info.joinTime).ToShortDateString();
+            if (this.status != null) this.status.text = this.Info.Status==1?"在线": TimeUtil.GetTime(this.Info.lastTime).ToShortDateString();
 
 
         }

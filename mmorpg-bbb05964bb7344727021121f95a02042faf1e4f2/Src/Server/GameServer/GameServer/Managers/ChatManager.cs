@@ -76,16 +76,16 @@ namespace GameServer.Managers
             if (!this.Guild.TryGetValue(guildId, out List<ChatMessage> messages))
             {
                 messages = new List<ChatMessage>();
-                this.Local[guildId] = messages;
+                this.Guild[guildId] = messages;
             }
             messages.Add(message);
         }
         private void AddTeamMessage(int TeamId, ChatMessage message)
         {
-            if (!this.Guild.TryGetValue(TeamId, out List<ChatMessage> messages))
+            if (!this.Team.TryGetValue(TeamId, out List<ChatMessage> messages))
             {
                 messages = new List<ChatMessage>();
-                this.Local[TeamId] = messages;
+                this.Team[TeamId] = messages;
             }
             messages.Add(message);
         }
@@ -116,7 +116,7 @@ namespace GameServer.Managers
         }
         public int GetGuildMessage(int guildId, int idx, List<ChatMessage> result)
         {
-            if (!this.Team.TryGetValue(guildId, out List<ChatMessage> messages))
+            if (!this.Guild.TryGetValue(guildId, out List<ChatMessage> messages))
             {
                 return 0;
             }

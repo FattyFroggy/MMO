@@ -1,6 +1,7 @@
 using Assets.Scripts.UI;
 using Assets.Scripts.UI.Chat;
 using Assets.Scripts.UI.Guild;
+using Assets.Scripts.UI.Ride;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ public class UIManager : Singleton<UIManager>
         this.UIResources.Add(typeof(UIGuildApplyList), new UIElement() { Resource = "UI/Guild/UIGuildApplyList", cache = false });
         this.UIResources.Add(typeof(UIPopCharMenu), new UIElement() { Resource = "UI/UIPopCharMenu", cache = false });
         this.UIResources.Add(typeof(UISystemConfig), new UIElement() { Resource = "UI/UISystemConfig", cache = false });
-
+        this.UIResources.Add(typeof(UIRide), new UIElement() { Resource = "UI/Ride/UIRide", cache = false });
     }
 
     ~UIManager()

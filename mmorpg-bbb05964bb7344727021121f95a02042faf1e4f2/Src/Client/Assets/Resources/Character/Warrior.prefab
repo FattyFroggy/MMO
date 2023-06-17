@@ -105,6 +105,8 @@ MonoBehaviour:
   animSpeed: 1.5
   jumpSpeed: 3
   isPlayer: 0
+  rideController: {fileID: 0}
+  rideBone: {fileID: 4282180309829192946}
 --- !u!1001 &4286555809261027072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -165,6 +167,12 @@ PrefabInstance:
 --- !u!95 &4192021018134925836 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95115641295777036, guid: e4d7fc11e7243a14ea0d8428b31466c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4286555809261027072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4282180309829192946 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4991241211704306, guid: e4d7fc11e7243a14ea0d8428b31466c8,
     type: 3}
   m_PrefabInstance: {fileID: 4286555809261027072}
   m_PrefabAsset: {fileID: 0}

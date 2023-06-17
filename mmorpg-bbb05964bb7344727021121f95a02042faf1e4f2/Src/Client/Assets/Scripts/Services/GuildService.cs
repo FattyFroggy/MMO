@@ -128,7 +128,7 @@ namespace Assets.Scripts.Services
                 Debug.Log("abc1");
                 this.OnGuildUpdate();
             }
-            Debug.Log("abc2");
+
         }
 
         public void SendGuildLeaveRequest()

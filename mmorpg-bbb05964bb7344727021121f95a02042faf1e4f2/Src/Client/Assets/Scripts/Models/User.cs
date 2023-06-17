@@ -30,7 +30,7 @@ namespace Models
         public PlayerInputController CurrentCharacterObject { get; set; }
 
 
-        public NTeamInfo TeamInfo { get; set; }
+         public NTeamInfo TeamInfo { get; set; }
         internal void AddGold(int gold)
         {
             this.CurrentCharacter.Gold += gold;

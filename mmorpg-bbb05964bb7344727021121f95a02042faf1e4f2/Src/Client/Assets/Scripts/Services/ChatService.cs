@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Services
 {
@@ -31,6 +32,7 @@ namespace Assets.Scripts.Services
         internal void SendChat(ChatManager chatManager, ChatChannel channel, string content, int toId, string toName)
         {
             NetMessage message = new NetMessage();
+            message.Request = new NetMessageRequest();
             message.Request.Chat = new ChatRequest();
             message.Request.Chat.Message = new ChatMessage();
             message.Request.Chat.Message.Channel = channel;
@@ -42,6 +44,7 @@ namespace Assets.Scripts.Services
 
         public void OnChat(object sender,ChatResponse message)
         {
+            Debug.Log("OnChat");
             if (message.Result == Result.Success)
             {
                 ChatManager.Instance.AddMessages(ChatChannel.Local, message.localMessages);

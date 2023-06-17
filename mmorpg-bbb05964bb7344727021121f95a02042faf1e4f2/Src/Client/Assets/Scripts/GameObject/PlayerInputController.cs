@@ -122,11 +122,15 @@ public class PlayerInputController : MonoBehaviour
             NavMove();
             return;
         }
+
         if (InputManager.Instance != null && InputManager.Instance.IsInputMode) return;
 
-        if (InputManager.Instance.IsInputMode == true)
-            return;
 
+
+        if (InputManager.Instance.isInputMode == true)
+        {
+            return;
+        }
         float v = Input.GetAxis("Vertical");
         if (v > 0.01)
         {

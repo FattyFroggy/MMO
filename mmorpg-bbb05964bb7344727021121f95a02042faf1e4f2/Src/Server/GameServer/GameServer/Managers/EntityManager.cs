@@ -18,7 +18,7 @@ namespace GameServer.Managers
 
         public void AddEntity(int mapId, Entity entity)
         {
-            Log.InfoFormat("entity++1");
+            //Log.InfoFormat("entity++1");
             AllEntities.Add(entity);
             entity.EntityData.Id = ++this.idx;
 

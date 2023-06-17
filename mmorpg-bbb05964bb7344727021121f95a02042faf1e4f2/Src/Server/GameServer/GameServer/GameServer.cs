@@ -29,7 +29,7 @@ namespace GameServer
             DataManager.Instance.Load();
             MapService.Instance.Init();
             UserService.Instance.Init();
-            ChatService.Instance.Init();
+
             //MapManager.Instance.Init();
       
             ItemService.Instance.Init();
@@ -37,6 +37,7 @@ namespace GameServer
             FriendService.Instance.Init();
             TeamService.Instance.Init();
             GuildService.Instance.Init();
+            ChatService.Instance.Init();
             thread = new Thread(new ThreadStart(this.Update));
 
             return true;

@@ -40,7 +40,7 @@ namespace GameServer.Models
             }
             if (this.Owner.Guild != null)
             {
-                this.teamIdx = ChatManager.Instance.GetGuildMessage(this.Owner.Guild.Id, this.guildIdx, message.Chat.guildMessages);
+                this.guildIdx = ChatManager.Instance.GetGuildMessage(this.Owner.Guild.Id, this.guildIdx, message.Chat.guildMessages);
             }
 
         }

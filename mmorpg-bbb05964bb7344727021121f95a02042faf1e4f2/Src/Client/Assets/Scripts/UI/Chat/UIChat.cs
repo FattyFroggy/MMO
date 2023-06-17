@@ -29,7 +29,8 @@ namespace Assets.Scripts.UI.Chat
 
         private void Update()
         {
-            InputManager.Instance.isInputMode = chatText.isFocused;
+            InputManager.Instance.IsInputMode = chatText.isFocused;
+
         }
         void OnDisplayChannelSelected(int idx)
         {
@@ -38,8 +39,10 @@ namespace Assets.Scripts.UI.Chat
         }
         public void RefreshUI()
         {
+ 
             this.textArea.text = ChatManager.Instance.GetCurrentMessage();
             this.channelSelect.value = (int)ChatManager.Instance.sendChannel - 1;
+         
             if (ChatManager.Instance.SendChannel == SkillBridge.Message.ChatChannel.Private)
             {
                 this.chatTarget.gameObject.SetActive(true);
@@ -52,17 +55,25 @@ namespace Assets.Scripts.UI.Chat
                     this.chatTarget.text = "<无>";
                 }
             }
+            else
+            {
+                this.chatTarget.gameObject.SetActive(false);
+            }
 
         }
         public void OnClickChatLink(HyperText text,HyperText.LinkInfo link)
         {
+            //Debug.LogWarning(link.Name) ;
             if (string.IsNullOrEmpty(link.Name))
                 return;
-            //<A NAME="C:1001:NAME" class="player">Name</a>>
+            //<A NAME="C:1001:NAME" class="player">Name</a>
+
+            //<I NAME="C:1001:NAME" class="iteam">Name</a>
             if (link.Name.StartsWith("c"))
             {
                 string[] strs = link.Name.Split(":".ToCharArray());
                 UIPopCharMenu menu = UIManager.Instance.Show<UIPopCharMenu>();
+
                 menu.targetId = int.Parse(strs[1]);
                 menu.targetName = strs[2];
             }

@@ -131,6 +131,8 @@ namespace Assets.Scripts.Managers
                     this.Messages[ch].AddRange(messages);
                 }
             }
+            if (this.OnChat != null)
+                this.OnChat();
         }
         public void AddSystemMessage(string message,string from = "")
         {
@@ -157,17 +159,18 @@ namespace Assets.Scripts.Managers
             switch (message.Channel)
             {
                 case ChatChannel.Local:
-                    return string.Format("[本地]{0}{1}]", FormatFromPlayer(message), message.Message);
+                    //Debug.LogFormat("[本地]{0}{1}", FormatFromPlayer(message), message.Message);
+                    return string.Format("<color=red>[本地]{0}{1}</color>", FormatFromPlayer(message), message.Message);
                 case ChatChannel.World:
                     return string.Format("<color=cyan>[世界]{0}{1}</color>", FormatFromPlayer(message), message.Message);
                 case ChatChannel.System:
-                    return string.Format("<color=yellow>[系统]{0}{1}</color>", FormatFromPlayer(message), message.Message);
+                    return string.Format("<color=yellow>[系统]{0}</color>",message.Message);
                 case ChatChannel.Private:
                     return string.Format("<color=magenta>[私聊]{0}{1}</color>", FormatFromPlayer(message), message.Message);
                 case ChatChannel.Team:
                     return string.Format("<color=green>[队伍]{0}{1}</color>", FormatFromPlayer(message), message.Message);
                 case ChatChannel.Guild:
-                    return string.Format("<color=blue>[公会]0}{1}</color>", FormatFromPlayer(message), message.Message);
+                    return string.Format("<color=blue>[公会]{0}{1}</color>", FormatFromPlayer(message), message.Message);
                 default:
                     break;
             }
@@ -181,7 +184,7 @@ namespace Assets.Scripts.Managers
             }
             else
             {
-                return string.Format("< a name =\"c:{0}:{1}\" class=\"player\">[{1}]</a>", message.FromId, message.FromName);
+                return string.Format("<a name =\"c:{0}:{1}\" class=\"player\">[{1}]</a>", message.FromId, message.FromName);
             }
         }
     }

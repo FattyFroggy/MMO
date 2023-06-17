@@ -1,5 +1,6 @@
 using Assets.Scripts.Managers;
 using Assets.Scripts.UI;
+using Assets.Scripts.UI.Ride;
 using Models;
 using System;
 using System.Collections;
@@ -74,9 +75,9 @@ public class UIMain : MonoSingleton<UIMain>
 
     }
 
-    public void OnClickRise()
+    public void OnClickRide()
     {
-        
+        UIManager.Instance.Show<UIRide>();
 
     }
 
