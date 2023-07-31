@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.Guild
@@ -15,12 +16,19 @@ namespace Assets.Scripts.UI.Guild
         public Text GuildMemberCount;
         public Text Leader;
         private NGuildInfo info;
+
+        public Image background;
+        public Sprite normalBg;
+        public Sprite selectedBg;
         public NGuildInfo Info
         {
             get { return info; }
             set { this.info = value; }
         }
-
+        public override void onSelected(bool selected)
+        {
+            this.background.overrideSprite = selected ? selectedBg : normalBg;
+        }
         internal void SetGuildInfo(NGuildInfo item)
         {
             this.Info = item;

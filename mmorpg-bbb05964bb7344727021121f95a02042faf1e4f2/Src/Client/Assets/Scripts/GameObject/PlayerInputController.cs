@@ -140,8 +140,8 @@ public class PlayerInputController : MonoBehaviour
                 this.character.MoveForward();
                 this.SendEntityEvent(EntityEvent.MoveFwd);
             }
-            //this.rb.velocity = this.rb.velocity.y * Vector3.up + GameObjectTool.LogicToWorld(character.direction) * (this.character.speed + 9.81f) / 100f;
-            this.rb.velocity = this.rb.velocity.y * Vector3.up + GameObjectTool.LogicToWorld(character.direction) * (this.character.speed + 1000f) / 100f;
+            this.rb.velocity = this.rb.velocity.y * Vector3.up + GameObjectTool.LogicToWorld(character.direction) * (this.character.speed + 9.81f) / 100f;
+            //this.rb.velocity = this.rb.velocity.y * Vector3.up + GameObjectTool.LogicToWorld(character.direction) * (this.character.speed + 1000f) / 100f;
         }
         else if (v < -0.01)
         {

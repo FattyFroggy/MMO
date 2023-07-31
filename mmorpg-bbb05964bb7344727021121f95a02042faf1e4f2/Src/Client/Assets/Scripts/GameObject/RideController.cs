@@ -8,7 +8,7 @@ public class RideController : MonoBehaviour
 {
     public Transform mountPoint;
     public EntityController rider;
-    private Vector3 offset;
+    public Vector3 offset;
     private Animator anim;
     // Start is called before the first frame update
     void Start()

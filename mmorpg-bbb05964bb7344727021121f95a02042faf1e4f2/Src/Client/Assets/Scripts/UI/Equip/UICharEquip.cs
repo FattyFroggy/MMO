@@ -21,7 +21,8 @@ public class UICharEquip : UIWindow
 
     public List<Transform> slots;
 
-     void Start()
+
+    void Start()
     {
         RefreshUI();
         EquipManager.Instance.OnEquipChanged += RefreshUI;

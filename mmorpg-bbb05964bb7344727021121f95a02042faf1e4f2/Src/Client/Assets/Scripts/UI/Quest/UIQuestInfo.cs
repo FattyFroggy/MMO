@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Models;
+﻿using Assets.Scripts.Managers;
+using Assets.Scripts.Models;
 using Manager;
 using Models;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-class UIQuestInfo: MonoBehaviour
+class UIQuestInfo : MonoBehaviour
 {
     public Button navButton;
     private int npc = 0;
@@ -17,14 +18,15 @@ class UIQuestInfo: MonoBehaviour
     public Text description;
     public Text rewardMoney;
     public Text rewardExp;
-    public UIIconItem rewardItems;
+    public UIIconItem[] rewardItems;
     public Text overview;
 
+    public Text Target;
 
 
     private void Start()
     {
-        
+
     }
 
     public void SetQuestInfo(Quest quest)
@@ -44,9 +46,21 @@ class UIQuestInfo: MonoBehaviour
                 {
                     this.description.text = quest.Define.DialogFinish;
                 }
+                else
+                {
+                    this.description.text = quest.Define.Overview;
+                }
             }
-        }
 
+        }
+        for (int i = 0; i < rewardItems.Length; i++)
+        {
+            rewardItems[i].mainImage.sprite = null;
+            rewardItems[i].mainText.text = null;
+        }
+        if (quest.Define.RewardItem1 != 0) this.rewardItems[0].SetMainIcon(DataManager.Instance.Items[quest.Define.RewardItem1].Icon, quest.Define.RewardItem1Count.ToString());
+        if (quest.Define.RewardItem2 != 0) this.rewardItems[1].SetMainIcon(DataManager.Instance.Items[quest.Define.RewardItem2].Icon, quest.Define.RewardItem2Count.ToString());
+        if (quest.Define.RewardItem3 != 0) this.rewardItems[2].SetMainIcon(DataManager.Instance.Items[quest.Define.RewardItem3].Icon, quest.Define.RewardItem3Count.ToString());
         this.rewardMoney.text = quest.Define.RewardGold.ToString();
         this.rewardExp.text = quest.Define.RewardExp.ToString();
 
@@ -58,8 +72,8 @@ class UIQuestInfo: MonoBehaviour
         {
             this.npc = quest.Define.SubmitNpc;
         }
-
-        foreach(var fitter in this.GetComponentsInChildren<ContentSizeFitter>())
+        //this.Target.text = DataManager.Instance.Npcs[npc].Name;
+        foreach (var fitter in this.GetComponentsInChildren<ContentSizeFitter>())
         {
             fitter.SetLayoutVertical();
         }
@@ -67,7 +81,7 @@ class UIQuestInfo: MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     public void OnClickAbandon()

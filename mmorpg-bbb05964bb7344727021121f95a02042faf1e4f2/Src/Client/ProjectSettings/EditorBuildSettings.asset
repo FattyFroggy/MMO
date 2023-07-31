@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/Map03.unity
     guid: 1a1da40d2dbb55347b80929645a59343
+  - enabled: 0
+    path: Assets/Levels/Suntail Village.unity
+    guid: f92dfda6574c0dd4bb785010bc97a9a0
   m_configObjects: {}

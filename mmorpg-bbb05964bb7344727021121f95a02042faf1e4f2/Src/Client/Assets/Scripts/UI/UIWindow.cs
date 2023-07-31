@@ -32,6 +32,7 @@ public abstract class UIWindow : MonoBehaviour
 
     public virtual void OnCloseClick()
     {
+        //SoundManager.Instance.
         this.Close();
     }
 
