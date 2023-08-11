@@ -85,6 +85,11 @@ public class UIMain : MonoSingleton<UIMain>
     {
         UIManager.Instance.Show<UISetting>();
     }
+
+    public void OnClickMaster()
+    {
+        UIManager.Instance.Show<UIMaster>();
+    }
     public void OnClickSkill()
     {
 

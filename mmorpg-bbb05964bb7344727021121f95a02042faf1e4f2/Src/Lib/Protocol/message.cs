@@ -101,6 +101,12 @@ namespace SkillBridge.Message
         [global::ProtoBuf.ProtoMember(19, Name = @"ride")]
         public int Ride { get; set; }
 
+        [global::ProtoBuf.ProtoMember(20, Name = @"master")]
+        public NMasterInfo Master { get; set; }
+
+        [global::ProtoBuf.ProtoMember(21, Name = @"apprentices")]
+        public global::System.Collections.Generic.List<NApprenticeInfo> Apprentices { get; } = new global::System.Collections.Generic.List<NApprenticeInfo>();
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -350,6 +356,30 @@ namespace SkillBridge.Message
         [global::ProtoBuf.ProtoMember(30, Name = @"chat")]
         public ChatRequest Chat { get; set; }
 
+        [global::ProtoBuf.ProtoMember(31)]
+        public MasterAddRequest masterAddReq { get; set; }
+
+        [global::ProtoBuf.ProtoMember(32)]
+        public MasterAddResponse masterAddRes { get; set; }
+
+        [global::ProtoBuf.ProtoMember(33)]
+        public MasterListRequest masterList { get; set; }
+
+        [global::ProtoBuf.ProtoMember(34)]
+        public MasterRemoveRequest masterRemove { get; set; }
+
+        [global::ProtoBuf.ProtoMember(35)]
+        public ApprenticeAddRequest apprenticeAddReq { get; set; }
+
+        [global::ProtoBuf.ProtoMember(36)]
+        public ApprenticeAddResponse apprenticeAddRes { get; set; }
+
+        [global::ProtoBuf.ProtoMember(37)]
+        public ApprenticeListRequest apprenticeList { get; set; }
+
+        [global::ProtoBuf.ProtoMember(38)]
+        public ApprenticeRemoveRequest apprenticeRemove { get; set; }
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -445,6 +475,30 @@ namespace SkillBridge.Message
 
         [global::ProtoBuf.ProtoMember(30, Name = @"chat")]
         public ChatResponse Chat { get; set; }
+
+        [global::ProtoBuf.ProtoMember(31)]
+        public MasterAddRequest masterAddReq { get; set; }
+
+        [global::ProtoBuf.ProtoMember(32)]
+        public MasterAddResponse masterAddRes { get; set; }
+
+        [global::ProtoBuf.ProtoMember(33)]
+        public MasterListResponse masterList { get; set; }
+
+        [global::ProtoBuf.ProtoMember(34)]
+        public MasterRemoveResponse masterRemove { get; set; }
+
+        [global::ProtoBuf.ProtoMember(35)]
+        public ApprenticeAddRequest apprenticeAddReq { get; set; }
+
+        [global::ProtoBuf.ProtoMember(36)]
+        public ApprenticeAddResponse apprenticeAddRes { get; set; }
+
+        [global::ProtoBuf.ProtoMember(37)]
+        public ApprenticeListResponse apprenticeList { get; set; }
+
+        [global::ProtoBuf.ProtoMember(38)]
+        public ApprenticeRemoveResponse apprenticeRemove { get; set; }
 
         [global::ProtoBuf.ProtoMember(100)]
         public StatusNotify statusNotify { get; set; }
@@ -1526,6 +1580,250 @@ namespace SkillBridge.Message
 
         [global::ProtoBuf.ProtoMember(8, Name = @"guildMessage")]
         public global::System.Collections.Generic.List<ChatMessage> guildMessages { get; } = new global::System.Collections.Generic.List<ChatMessage>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class NMasterInfo : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"id")]
+        public int Id { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public NCharacterInfo masterInfo { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"status")]
+        public int Status { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MasterAddRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"from_id")]
+        public int FromId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"from_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string FromName { get; set; } = "";
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"to_id")]
+        public int ToId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"to_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string ToName { get; set; } = "";
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MasterAddResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"result")]
+        public Result Result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"errormsg")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Errormsg { get; set; } = "";
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"request")]
+        public MasterAddRequest Request { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MasterListRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MasterListResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"result")]
+        public Result Result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"errormsg")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Errormsg { get; set; } = "";
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"master")]
+        public NMasterInfo Master { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MasterRemoveRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"id")]
+        public int Id { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public int masterId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class MasterRemoveResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"result")]
+        public Result Result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"errormsg")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Errormsg { get; set; } = "";
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"id")]
+        public int Id { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class NApprenticeInfo : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"id")]
+        public int Id { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public NCharacterInfo apprenticeInfo { get; set; }
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"status")]
+        public int Status { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ApprenticeAddRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"from_id")]
+        public int FromId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"from_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string FromName { get; set; } = "";
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"to_id")]
+        public int ToId { get; set; }
+
+        [global::ProtoBuf.ProtoMember(4, Name = @"to_name")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string ToName { get; set; } = "";
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ApprenticeAddResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"result")]
+        public Result Result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"errormsg")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Errormsg { get; set; } = "";
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"request")]
+        public ApprenticeAddRequest Request { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ApprenticeListRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ApprenticeListResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"result")]
+        public Result Result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"errormsg")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Errormsg { get; set; } = "";
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"apprentice")]
+        public global::System.Collections.Generic.List<NApprenticeInfo> Apprentices { get; } = new global::System.Collections.Generic.List<NApprenticeInfo>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ApprenticeRemoveRequest : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"id")]
+        public int Id { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public int apprenticeId { get; set; }
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class ApprenticeRemoveResponse : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1, Name = @"result")]
+        public Result Result { get; set; }
+
+        [global::ProtoBuf.ProtoMember(2, Name = @"errormsg")]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string Errormsg { get; set; } = "";
+
+        [global::ProtoBuf.ProtoMember(3, Name = @"id")]
+        public int Id { get; set; }
 
     }
 

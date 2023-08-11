@@ -63,7 +63,7 @@ namespace Assets.Scripts.UI.Chat
         }
         public void OnClickChatLink(HyperText text,HyperText.LinkInfo link)
         {
-            //Debug.LogWarning(link.Name) ;
+            Debug.LogError(link.Name) ;
             if (string.IsNullOrEmpty(link.Name))
                 return;
             //<A NAME="C:1001:NAME" class="player">Name</a>

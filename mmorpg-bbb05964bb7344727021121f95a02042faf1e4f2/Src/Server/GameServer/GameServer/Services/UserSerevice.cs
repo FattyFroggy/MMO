@@ -118,7 +118,11 @@ namespace GameServer.Services
                 MapPosZ = 820,
                 Gold=100000,
                 Equips=new byte[28],
+                
             };
+
+            
+     
             var bag = new TCharacterBag();
             bag.Owner = character;
             bag.Items = new byte[0];
@@ -126,6 +130,16 @@ namespace GameServer.Services
 
             character.Bag = DBService.Instance.Entities.TCharacterBags.Add(bag);
 
+            //TCharacterMaster master = new TCharacterMaster()
+            //{
+            //    Owner = character,
+            //    CharacterID = character.ID,
+            //    MasterId = -1,
+            //    MasterName = null,
+            //    Class = 0,
+            //    Level = 0,
+            //};
+            //character.Master = DBService.Instance.Entities.TCharacterMasters.Add(master);
 
 
             character = DBService.Instance.Entities.Characters.Add(character);

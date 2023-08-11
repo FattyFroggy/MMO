@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.UI.Chat;
+using Managers;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,14 @@ namespace Assets.Scripts.UI
     {
         public void ExitToCharSelect()
         {
-            UIPopCharMenu menu= UIManager.Instance.Show<UIPopCharMenu>();
-            
+            //UIPopCharMenu menu= UIManager.Instance.Show<UIPopCharMenu>();
 
-            //SceneManager.Instance.LoadScene("CharSelect");
-            ////
-            //SoundManager.Instance.PlayMusic(SoundDefine.Music_Select);
-            //UserService.Instance.SendGameLeave();
+
+            //Destroy(MinimapManager.Instance.minimap.gameObject);
+            //MinimapManager.Instance.minimap = null;
+            SoundManager.Instance.PlayMusic(SoundDefine.Music_Select);
+            UserService.Instance.SendGameLeave();
+            SceneManager.Instance.LoadScene("CharSelect");
         }
         public void SystemConfig()
         {

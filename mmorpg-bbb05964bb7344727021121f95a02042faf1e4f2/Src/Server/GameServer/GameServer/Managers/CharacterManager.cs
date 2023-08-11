@@ -43,7 +43,12 @@ namespace GameServer.Managers
 
         public void RemoveCharacter(int characterId)
         {
-            var cha = this.Characters[characterId];
+            Character cha;
+            if (!this.Characters.TryGetValue(characterId, out cha))
+            {
+                return;
+            }
+            //var cha = this.Characters[characterId];
             EntityManager.Instance.RemoveEntity(cha.Data.MapID, cha);
             this.Characters.Remove(characterId);
         }

@@ -22,6 +22,7 @@ namespace GameServer.Entities
         public ItemManager itemManager;
         public QuestManager QuestManager;
         public FriendManager FriendManager;
+        public MasterManager MasterManager;
 
         public Guild Guild;
         public double GuildUpdateTS;
@@ -64,8 +65,19 @@ namespace GameServer.Entities
             this.QuestManager.GetQuestInfos(this.Info.Quests);
 
             this.statusManager = new StatusManager(this);
+
             this.FriendManager = new FriendManager(this);
             this.FriendManager.GetFriendInfos(this.Info.Friends);
+
+
+ 
+            this.MasterManager = new MasterManager(this);
+            //this.Info.Master = new NMasterInfo();
+            // this.Info.Master.Id = this.Data.Master.MasterId;
+            //this.Info.Master.masterInfo =this.
+            //this.MasterManager.GetMasterInfo(this.Info.Master);
+            this.Info.Master = this.MasterManager.GetMasterInfo();
+            this.MasterManager.GetApprenticeInfos(this.Info.Apprentices);
 
             this.Guild = GuildManager.Instance.GetGuild(this.Data.GuildId);
             if (Guild != null)
@@ -103,7 +115,7 @@ namespace GameServer.Entities
         public void PostProcess(NetMessageResponse message)
         {
             this.FriendManager.PostProcess(message);
-
+            this.MasterManager.PostProcess(message);
             if (this.Team != null)
             {
                 if (TeamUpdateTS < Team.timestamp)
@@ -135,11 +147,14 @@ namespace GameServer.Entities
                
             }
             this.Chat.PostProcess(message);
+
+
         }
 
         internal void Clear()
         {
             this.FriendManager.offlineNotify();
+            this.MasterManager.offlineNotify();
         }
 
         public NCharacterInfo GetBasicInfo()

@@ -51,9 +51,10 @@ namespace GameServer.Services
                     if (sender.Session.Response.Chat == null)
                     {
                         sender.Session.Response.Chat = new ChatResponse();
+                       
                     }
                     sender.Session.Response.Chat.Result = Result.Success;
-                    ChatManager.Instance.AddMessage(character, request.Message);
+                    sender.Session.Response.Chat.privateMessages.Add(request.Message);
                     sender.SendResponse();
 
                 }

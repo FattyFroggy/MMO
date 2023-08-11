@@ -71,10 +71,14 @@ namespace Assets.Scripts.UI.Guild
         }
         public void OnClickLeave()
         {
-
+            MessageBox.Show("确定要离开[{0}]公会吗?", "离开公会", MessageBoxType.Confirm, "确定", "取消").OnYes = () =>
+            {
+                GuildService.Instance.SendGuildLeaveRequest();
+            };
         }
         public void OnClickChat()
         {
+
 
         }
         public void OnClickKickout()

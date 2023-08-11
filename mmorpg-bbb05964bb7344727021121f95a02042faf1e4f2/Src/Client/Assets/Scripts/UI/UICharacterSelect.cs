@@ -79,7 +79,7 @@ public class UICharacterSelect : MonoBehaviour
     {
         panelCreate.SetActive(true);
         panelSelect.SetActive(false);
-        OnSelectClass(3);
+        OnSelectClass(1);
     }
 
     // Update is called once per frame

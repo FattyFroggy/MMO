@@ -21,6 +21,11 @@ public class UIFriend : UIWindow
         RefreshUI();
         
     }
+    private void OnDestroy()
+    {
+        Debug.Log("OnDestory");
+        FriendService.Instance.OnFriendUpdate = null;
+    }
     private void OnFriendSelected(ListView.ListViewItem item)
     {
         this.selectedItem = item as UIFriendItem;
@@ -54,8 +59,54 @@ public class UIFriend : UIWindow
     {
         
     }
+    /// <summary>
+    /// 拜师
+    /// </summary>
+    public void OnClickMasterInvite()
+    {
+        if (selectedItem == null)
+        {
+            MessageBox.Show("请选择");
+            return;
+        }
+        if (selectedItem.info.Status == 0)
+        {
+            MessageBox.Show("请选择在线好友");
+            return;
+        }
+        if (User.Instance.CurrentCharacter.Master == null)
+        {
+            MessageBox.Show(string.Format("确定要拜[{0}]为师吗?", selectedItem.info.friendInfo.Name), "拜师请求,", MessageBoxType.Confirm, "邀请", "取消").OnYes = () =>
+            {
+                MasterService.Instance.SendMasterRequest(this.selectedItem.info.friendInfo.Id, this.selectedItem.info.friendInfo.Name);
+            };
+        }
+        else
+        {
+            MessageBox.Show("你已有师父,无法再次拜师");
+        }
 
-
+    }
+    /// <summary>
+    /// 收徒
+    /// </summary>
+    public void OnClickApprenticeInvite()
+    {
+        if (selectedItem == null)
+        {
+            MessageBox.Show("请选择");
+            return;
+        }
+        if (selectedItem.info.Status == 0)
+        {
+            MessageBox.Show("请选择在线好友");
+            return;
+        }
+        MessageBox.Show(string.Format("确定要收[{0}]为徒吗?", selectedItem.info.friendInfo.Name), "收徒请求,", MessageBoxType.Confirm, "邀请", "取消").OnYes = () =>
+        {
+            MasterService.Instance.SendApprenticeRequest(this.selectedItem.info.friendInfo.Id, this.selectedItem.info.friendInfo.Name);
+        };
+    }
     public void OnClickFriendTeamInvite()
     {
         if (selectedItem == null)
@@ -75,7 +126,8 @@ public class UIFriend : UIWindow
     }
     public void OnClickFriendChat()
     {
-
+        ChatManager.Instance.StartPrivateChat(selectedItem.info.friendInfo.Id, selectedItem.info.friendInfo.Name);
+        this.Close(WindowResult.None);
     }
 
     public void OnClickFriendRemove()

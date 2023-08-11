@@ -131,6 +131,7 @@
     <Compile Include="Managers\GuildManager.cs" />
     <Compile Include="Managers\ItemManager.cs" />
     <Compile Include="Managers\MapManager.cs" />
+    <Compile Include="Managers\MasterManager.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
     <Compile Include="Managers\QuestManager.cs" />
     <Compile Include="Managers\SessionManager.cs" />
@@ -166,12 +167,16 @@
     <Compile Include="Services\GuildService.cs" />
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\MapService.cs" />
+    <Compile Include="Services\MasterService.cs" />
     <Compile Include="Services\QuestService.cs" />
     <Compile Include="Services\TeamService.cs" />
     <Compile Include="Services\UserSerevice.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Core\Vector3Int.cs" />
     <Compile Include="TCharacter.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TCharacterApprentice.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="TCharacterBag.cs">
@@ -181,6 +186,9 @@
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="TCharacterItem.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TCharacterMaster.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="TCharacterQuest.cs">

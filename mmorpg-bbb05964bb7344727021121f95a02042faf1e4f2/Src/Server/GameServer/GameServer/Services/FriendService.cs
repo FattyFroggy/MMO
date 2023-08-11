@@ -27,6 +27,7 @@ namespace GameServer.Services
 
 
 
+
         private void OnFriendAddRequest(NetConnection<NetSession> sender, FriendAddRequest request)
         {
             Character character = sender.Session.Character;
@@ -108,7 +109,7 @@ namespace GameServer.Services
             if (character.FriendManager.RemoveFriendByID(request.Id))
             {
                 sender.Session.Response.friendRemove.Result = Result.Success;
-                var friend = SessionManager.Instance.GetSession(character.Id);
+                var friend = SessionManager.Instance.GetSession(request.friendId);
                 if (friend != null)
                 {
                     friend.Session.Character.FriendManager.RemoveFriendByID(character.Id);

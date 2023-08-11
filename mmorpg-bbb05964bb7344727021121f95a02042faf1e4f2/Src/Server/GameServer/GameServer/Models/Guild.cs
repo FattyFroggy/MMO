@@ -101,15 +101,26 @@ namespace GameServer.Models
         public void Leave(Character member)
         {
             Log.InfoFormat("Leave Guild:{0}:{1}", member.Id, member.Info.Name);
-            //this.Members.Remove(member);
-            //if (member == this.Leader)
-            //{
-            //    if (this.Members.Count > 0)
-            //        this.Leader = this.Members[0];
-            //    else
-            //        this.Leader = null;
-            //}
-            //member.Guild = null;
+            var removeItem = this.Data.Members.FirstOrDefault(v => v.CharacterId == member.Id);
+            DBService.Instance.Entities.TGuildMembers.Remove(removeItem);
+           
+            var removeItem1 = this.Data.Members.FirstOrDefault(v => v.CharacterId == member.Id);
+            this.Data.Members.Remove(removeItem1);
+            if (member.Data.ID == this.Data.LeaderID)
+            {
+                if (this.Data.Members.Count > 0) {
+                    this.Data.LeaderID = this.Data.Members.First().CharacterId;
+                    this.Data.LeaderName = this.Data.Members.First().Name;
+                }
+                else
+                {
+                    DBService.Instance.Entities.TGuilds.Remove(this.Data);
+                }
+                    
+            }
+            member.Data.GuildId = 0;
+            member.Guild = null;
+            DBService.Instance.Save();
             timestamp = TimeUtil.timestamp;        
         }
 
@@ -229,6 +240,8 @@ namespace GameServer.Models
             switch (command)
             {
                 case GuildAdminCommand.Kickout:
+                    var removeItem = this.Data.Members.FirstOrDefault(v => v.CharacterId == targetId);
+                    DBService.Instance.Entities.TGuildMembers.Remove(removeItem);
                     break;
                 case GuildAdminCommand.Promote:
                     target.Title = (int)GuildTitle.VicePresident;

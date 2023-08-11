@@ -37,6 +37,16 @@ namespace Network
             if (message.guildAdmin != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildAdmin); }
             if (message.Chat!= null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.Chat); }
 
+            if (message.masterAddReq != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.masterAddReq); }
+            if (message.masterAddRes != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.masterAddRes); }
+            if (message.masterList != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.masterList); }
+            if (message.masterRemove != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.masterRemove); }
+
+            if (message.apprenticeAddReq != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.apprenticeAddReq); }
+            if (message.apprenticeAddRes != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.apprenticeAddRes); }
+            if (message.apprenticeList != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.apprenticeList); }
+            if (message.apprenticeRemove != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.apprenticeRemove); }
+
         }
 
         public void Dispatch(T sender, SkillBridge.Message.NetMessageRequest message)
@@ -70,6 +80,16 @@ namespace Network
             if (message.guildList != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildList); }
             if (message.guildAdmin != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.guildAdmin); }
             if (message.Chat != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.Chat); }
+
+            if (message.masterAddReq != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.masterAddReq); }
+            if (message.masterAddRes != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.masterAddRes); }
+            if (message.masterList != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.masterList); }
+            if (message.masterRemove != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.masterRemove); }
+
+            if (message.apprenticeAddReq != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.apprenticeAddReq); }
+            if (message.apprenticeAddRes != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.apprenticeAddRes); }
+            if (message.apprenticeList != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.apprenticeList); }
+            if (message.apprenticeRemove != null) { MessageDistributer<T>.Instance.RaiseEvent(sender, message.apprenticeRemove); }
         }
     }
 }

@@ -30,6 +30,8 @@ public partial class TCharacter
 
         this.Friends = new HashSet<TCharacterFriend>();
 
+        this.Apprentices = new HashSet<TCharacterApprentice>();
+
     }
 
 
@@ -76,6 +78,12 @@ public partial class TCharacter
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<TCharacterFriend> Friends { get; set; }
+
+    public virtual TCharacterMaster Master { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<TCharacterApprentice> Apprentices { get; set; }
 
 }
 

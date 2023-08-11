@@ -99,10 +99,12 @@ message NCharacterInfo {
 	repeated NFriendInfo friends =17;
 
 
-
 	NGuildInfo guild=18;
 	
 	int32 ride=19;
+
+	NMasterInfo master=20;
+	repeated  NApprenticeInfo apprentices=21;
 }
 
 message NAttributeDynamic{
@@ -236,6 +238,17 @@ message NetMessageRequest{
 	GuildAdminRequest guildAdmin=29;
 
 	ChatRequest chat=30;
+
+	MasterAddRequest masterAddReq=31;
+	MasterAddResponse masterAddRes=32;
+	MasterListRequest masterList=33;
+	MasterRemoveRequest masterRemove=34;
+
+	ApprenticeAddRequest apprenticeAddReq=35;
+	ApprenticeAddResponse apprenticeAddRes=36;
+	ApprenticeListRequest apprenticeList=37;
+	ApprenticeRemoveRequest apprenticeRemove=38;
+
 }
 
 message NetMessageResponse{
@@ -278,7 +291,24 @@ message NetMessageResponse{
 	GuildAdminResponse guildAdmin=29;
 
 	ChatResponse chat=30;
+
+	MasterAddRequest masterAddReq=31;
+	MasterAddResponse masterAddRes=32;
+	MasterListResponse masterList=33;
+	MasterRemoveResponse masterRemove=34;
+
+	ApprenticeAddRequest apprenticeAddReq=35;
+	ApprenticeAddResponse apprenticeAddRes=36;
+	ApprenticeListResponse apprenticeList=37;
+	ApprenticeRemoveResponse apprenticeRemove=38;
+
+
+
 	StatusNotify statusNotify=100;
+
+
+
+
 }
 
 
@@ -521,7 +551,7 @@ message FriendRemoveResponse
 	int32 id=3;
 }
 
-//
+//team
 message NTeamInfo
 {
 	int32 id=1;
@@ -714,4 +744,90 @@ message ChatResponse
 	repeated ChatMessage privateMessage=6;
 	repeated ChatMessage teamMessage=7;		
 	repeated ChatMessage guildMessage=8;	
+}
+
+
+//master system 拜师
+message NMasterInfo{
+	int32 id=1;
+	NCharacterInfo masterInfo=2;
+	int32 status=3;
+}
+
+message MasterAddRequest{
+	int32 from_id=1;
+	string from_name=2;
+	int32 to_id=3;
+	string to_name=4;
+}
+
+message MasterAddResponse{
+	Result result=1;
+	string errormsg=2;
+	MasterAddRequest request=3;
+}
+
+message MasterListRequest
+{
+
+}
+
+message MasterListResponse
+{
+	Result result=1;
+	string errormsg=2;
+	NMasterInfo master=3;
+}
+
+message MasterRemoveRequest{
+	int32 id=1;
+	int32 masterId=2;
+}
+message MasterRemoveResponse
+{
+	Result result=1;
+	string errormsg=2;
+	int32 id=3;
+}
+
+//收徒
+message NApprenticeInfo{
+	int32 id=1;
+	NCharacterInfo apprenticeInfo=2;
+	int32 status=3;
+}
+message ApprenticeAddRequest{
+	int32 from_id=1;
+	string from_name=2;
+	int32 to_id=3;
+	string to_name=4;
+}
+
+message ApprenticeAddResponse{
+	Result result=1;
+	string errormsg=2;
+	ApprenticeAddRequest request=3;
+}
+
+message ApprenticeListRequest
+{
+
+}
+
+message ApprenticeListResponse
+{
+	Result result=1;
+	string errormsg=2;
+	repeated NApprenticeInfo apprentice=3;
+}
+
+message ApprenticeRemoveRequest{
+	int32 id=1;
+	int32 apprenticeId=2;
+}
+message ApprenticeRemoveResponse
+{
+	Result result=1;
+	string errormsg=2;
+	int32 id=3;
 }

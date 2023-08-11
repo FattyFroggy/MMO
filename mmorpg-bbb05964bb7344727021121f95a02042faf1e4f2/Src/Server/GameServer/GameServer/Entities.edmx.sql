@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/04/2023 21:57:35
--- Generated from EDMX file: E:\Unity\mmorpg-bbb05964bb7344727021121f95a02042faf1e4f2\Src\Server\GameServer\GameServer\Entities.edmx
+-- Date Created: 08/09/2023 19:40:09
+-- Generated from EDMX file: E:\MMO\mmorpg-bbb05964bb7344727021121f95a02042faf1e4f2\Src\Server\GameServer\GameServer\Entities.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -41,6 +41,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_TGuildTGuildApply]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TGuildApplies] DROP CONSTRAINT [FK_TGuildTGuildApply];
 GO
+IF OBJECT_ID(N'[dbo].[FK_TCharacterTCharacterMaster]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TCharacterMasters] DROP CONSTRAINT [FK_TCharacterTCharacterMaster];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TCharacterTCharacterApprentice]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TCharacterApprentices] DROP CONSTRAINT [FK_TCharacterTCharacterApprentice];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -75,6 +81,12 @@ IF OBJECT_ID(N'[dbo].[TGuildMembers]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[TGuildApplies]', 'U') IS NOT NULL
     DROP TABLE [dbo].[TGuildApplies];
+GO
+IF OBJECT_ID(N'[dbo].[TCharacterMasters]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TCharacterMasters];
+GO
+IF OBJECT_ID(N'[dbo].[TCharacterApprentices]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TCharacterApprentices];
 GO
 
 -- --------------------------------------------------
@@ -195,6 +207,29 @@ CREATE TABLE [dbo].[TGuildApplies] (
 );
 GO
 
+-- Creating table 'TCharacterMasters'
+CREATE TABLE [dbo].[TCharacterMasters] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [MasterId] int  NOT NULL,
+    [MasterName] nvarchar(max)  NOT NULL,
+    [Class] int  NOT NULL,
+    [Level] int  NOT NULL,
+    [CharacterID] int  NOT NULL,
+    [Owner_ID] int  NOT NULL
+);
+GO
+
+-- Creating table 'TCharacterApprentices'
+CREATE TABLE [dbo].[TCharacterApprentices] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [ApprenticeId] int  NOT NULL,
+    [ApprenticeName] nvarchar(max)  NOT NULL,
+    [Class] int  NOT NULL,
+    [Level] int  NOT NULL,
+    [CharacterID] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -256,6 +291,18 @@ GO
 -- Creating primary key on [Id] in table 'TGuildApplies'
 ALTER TABLE [dbo].[TGuildApplies]
 ADD CONSTRAINT [PK_TGuildApplies]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'TCharacterMasters'
+ALTER TABLE [dbo].[TCharacterMasters]
+ADD CONSTRAINT [PK_TCharacterMasters]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'TCharacterApprentices'
+ALTER TABLE [dbo].[TCharacterApprentices]
+ADD CONSTRAINT [PK_TCharacterApprentices]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -381,6 +428,36 @@ GO
 CREATE INDEX [IX_FK_TGuildTGuildApply]
 ON [dbo].[TGuildApplies]
     ([TGuildId]);
+GO
+
+-- Creating foreign key on [Owner_ID] in table 'TCharacterMasters'
+ALTER TABLE [dbo].[TCharacterMasters]
+ADD CONSTRAINT [FK_TCharacterTCharacterMaster]
+    FOREIGN KEY ([Owner_ID])
+    REFERENCES [dbo].[Characters]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TCharacterTCharacterMaster'
+CREATE INDEX [IX_FK_TCharacterTCharacterMaster]
+ON [dbo].[TCharacterMasters]
+    ([Owner_ID]);
+GO
+
+-- Creating foreign key on [CharacterID] in table 'TCharacterApprentices'
+ALTER TABLE [dbo].[TCharacterApprentices]
+ADD CONSTRAINT [FK_TCharacterTCharacterApprentice]
+    FOREIGN KEY ([CharacterID])
+    REFERENCES [dbo].[Characters]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TCharacterTCharacterApprentice'
+CREATE INDEX [IX_FK_TCharacterTCharacterApprentice]
+ON [dbo].[TCharacterApprentices]
+    ([CharacterID]);
 GO
 
 -- --------------------------------------------------

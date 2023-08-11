@@ -38,6 +38,8 @@ public class UIManager : Singleton<UIManager>
         this.UIResources.Add(typeof(UIPopCharMenu), new UIElement() { Resource = "UI/UIPopCharMenu", cache = false });
         this.UIResources.Add(typeof(UISystemConfig), new UIElement() { Resource = "UI/UISystemConfig", cache = false });
         this.UIResources.Add(typeof(UIRide), new UIElement() { Resource = "UI/Ride/UIRide", cache = false });
+        this.UIResources.Add(typeof(UIMaster), new UIElement() { Resource = "UI/Master/UIMaster", cache = false });
+        this.UIResources.Add(typeof(UIMasterItem), new UIElement() { Resource = "UI/Master/UIMasterItem", cache = false });
     }
 
     ~UIManager()
